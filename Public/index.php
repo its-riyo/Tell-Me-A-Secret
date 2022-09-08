@@ -1,3 +1,7 @@
 <?php
 
-    echo 'Starting project :)';
+    use Core\App;
+    
+    require "../vendor/autoload.php";
+
+    $app = new App();
