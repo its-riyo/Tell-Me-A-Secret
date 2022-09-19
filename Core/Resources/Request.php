@@ -13,9 +13,11 @@
         public static $uri;
         public static $requestMethod;
 
-        function __construct()
-        {
+        public static function dispatch() {
+            // Get the  current uri
             self::$uri = $_SERVER["REQUEST_URI"];
+
+            // Get the current request method
             self::$requestMethod = $_SERVER["REQUEST_METHOD"];
         }
 

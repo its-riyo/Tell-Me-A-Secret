@@ -2,10 +2,11 @@
 
     namespace Routes;
 
+    use App\Http\Controllers\userController;
     use Core\Resources\Router;
 
     /**
-     * Here you can register all of the routes that 
+     * Here you can register any route 
      * you need :) 
      */
 
@@ -15,17 +16,20 @@
         // Register all routes inside this function!
         public static function set() {
             
+            Router::post("/post", function () {
+                echo 'hi';
+           });
+
             Router::get("/", function () {
-                echo 'ur home';
+                echo "home";
             });
-        
-            Router::get("/testing", function () {
-                echo "Testing working";
+
+            Router::get("/posts/{id}", function ($params) {
+                print_r($params);
             });
-        
-            Router::post("/anotherpost", function () {
-                die(json_encode(["Hey" => "Everything is working just fine!"]));
-            });
+
+            Router::get("/controller/{id}", [userController::class, 'controller']);
+
         }
 
      }
