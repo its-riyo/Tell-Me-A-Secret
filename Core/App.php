@@ -22,8 +22,6 @@
             // Set all defined routes and dispatch them to the signed URI
             Router::dispatch();
             
-            $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
-            $dotenv->load();
         }
 
 
