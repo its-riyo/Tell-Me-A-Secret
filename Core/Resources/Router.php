@@ -1,27 +1,28 @@
 <?php
 
     namespace Core\Resources;
-    use Closure;
     use Core\Auxiliaries\RouterAuxi;
     use Routes\Web;
-    use App\Http\Controllers;
-use Exception;
 
     /*
-     * This class is responsable for everything that
-     * involves Routing. :)
+     * This class has all the routing logic. Here we store and register
+     * every route defined within Routes/web.php 
+     * This class uses a trait to register especial routes that uses controllers
+     * or parameters :).
+     * 
     */
     
     class Router 
     {
 
+        // Auxiliar router trait
         use RouterAuxi;
 
         // Saving all routes
         public static $routes = [];
 
         // Method to create a new get route
-        public static function get(String $route, $action) {
+        public static function get(String $route, $action):void {
 
 
             // Call an Auxiliar trait to check if the route has parameters
@@ -39,7 +40,7 @@ use Exception;
         }
 
         // Method to create a new post route
-        public static function post(String $route, $action) {
+        public static function post(String $route, $action):void {
             
                 // Call an Auxiliar trait to check if the route has parameters
                 // If so we store it within this route
@@ -56,7 +57,7 @@ use Exception;
         }
 
         // Method to create a new delete route
-        public static function delete(String $route, $action) {
+        public static function delete(String $route, $action):void {
             
                 // Call an Auxiliar trait to check if the route has parameters
                 // If so we store it within this route
@@ -73,7 +74,7 @@ use Exception;
         }
 
         // Method to create a new put (Update) route
-        public static function put(String $route, $action) {
+        public static function put(String $route, $action):void {
 
                 // Call an Auxiliar trait to check if the route has parameters
                 // If so we store it within this route
@@ -90,7 +91,7 @@ use Exception;
         }
 
         //  Set all routes, save them and then dispatch them
-        public static function dispatch() {
+        public static function dispatch():void {
 
             // Set all routes defined in Routes/Web.php
             Web::set();
@@ -114,8 +115,8 @@ use Exception;
                 }
                 
             } else {
-                //header("Location: /");
-                die(json_encode(["Error" => "Oops 404 :(","errorCode" => 404]));
+                // Sending headers with error message
+                Response::error("Error: Route not found", 404);
             };
         }
 

@@ -2,7 +2,6 @@
 
     namespace Core\Auxiliaries;
 
-    use Closure;
     use Core\Resources\Request;
     use Core\Resources\Router;
     /**
@@ -99,19 +98,24 @@
             return false;
         }
 
+
+        // Check if a registerd route has a controller
         public static function hasController($route, $action, $requestMethod):bool {
 
+            // If the action is an array, then the class is using a controller for logic
             if (is_array($action)) {
+                // Get controller name and method
                 $controller = $action[0];
                 $method = $action[1];
 
+                // Register them
                 Router::$routes[$requestMethod][$route]['controller'] = $controller;
                 Router::$routes[$requestMethod][$route]['method'] = $method;
-
+                
                 return True;
-            } else {
-                return False;
             }
+
+            return False;
         }
 
 
