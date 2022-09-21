@@ -16,6 +16,10 @@
         // Register all routes inside this function!
         public static function set():void {
 
+            Router::get("/", function () {
+               echo $_ENV['AZURE_SSH_KEY'];
+            });
+
         }
 
      }

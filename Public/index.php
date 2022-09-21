@@ -13,9 +13,8 @@
      * This line is bootstraping all resources that we need
      * using a construct method :)
      */
-    define("BASE_PATH", __DIR__."../");
 
-    $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
+    $dotenv = Dotenv\Dotenv::createImmutable("../");
     $dotenv->load();
 
     $app = new App();
